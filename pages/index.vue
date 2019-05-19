@@ -1,34 +1,73 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <card title="Free" icon="github-circle">
-        Open source on <a href="https://github.com/buefy/buefy"> GitHub</a>
-      </card>
-
-      <card title="Responsive" icon="cellphone-link">
-        <b class="has-text-grey">Every</b> component is responsive
-      </card>
-
-      <card title="Modern" icon="alert-decagram">
-        Built with <a href="https://vuejs.org/">Vue.js</a> and
-        <a href="http://bulma.io/">Bulma</a>
-      </card>
-
-      <card title="Lightweight" icon="arrange-bring-to-front">
-        No other internal dependency
-      </card>
-    </div>
-  </section>
+  <div class="page-body index">
+    <section class="recent-posts">
+      <h1 class="title">RECENT POSTS</h1>
+      <div class="posts-wrap">
+        <card
+          v-for="(post, i) in posts"
+          :id="post.sys.id"
+          :key="i"
+          :title="post.fields.title"
+          :date="post.sys.updatedAt"
+          class="post"
+        />
+      </div>
+      <div class="buttom view-all">
+        <a href="/postlist">
+          <b-button @click="clickMe">VIEW ALL</b-button>
+        </a>
+      </div>
+    </section>
+    <section class="note-posts">
+      <h1 class="title">NOTE POSTS</h1>
+      <div class="tile is-2">
+        <card class="post" />
+      </div>
+      <div class="buttom external">
+        <a href="https://note.mu/mii_yo">
+          <!-- TODO icon -->
+          <b-button icon-right="note">VISIT</b-button>
+        </a>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-import Card from '~/components/Card'
+import Card from '~/components/card.vue'
+import { createClient } from '~/plugins/contentful.js'
 
+const client = createClient()
 export default {
-  name: 'HomePage',
-
+  transition: 'slide-left',
   components: {
     Card
+  },
+  asyncData({ env, params }) {
+    return client.getEntries(env.CTF_BLOG_POST_TYPE_ID).then(entries => {
+      return {
+        posts: entries.items
+      }
+    })
+    // .catch(console.error)
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.page-body {
+  section {
+    margin-bottom: 90px;
+  }
+  .posts-wrap {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .post + .post {
+    margin-left: 20px;
+  }
+  .button {
+    margin: 30px auto;
+  }
+}
+</style>
