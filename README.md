@@ -1,5 +1,4 @@
 # my-blog
-
 My blog ( Nuxt + buefy + contentful )
 
 > My outstanding Nuxt.js project
