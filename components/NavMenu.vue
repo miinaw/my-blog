@@ -25,6 +25,11 @@ export default {
           title: 'Inspire',
           icon: 'lightbulb',
           to: { name: 'inspire' }
+        },
+        {
+          title: 'About',
+          icon: 'account',
+          to: { name: 'postlist' }
         }
       ]
     }
