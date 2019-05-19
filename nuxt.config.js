@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import pkg from './package'
 
+// eslint-disable-next-line nuxt/no-cjs-in-config
 const { getConfigForKeys } = require('./lib/config.js')
 const ctfConfig = getConfigForKeys([
   'CTF_BLOG_POST_TYPE_ID',
@@ -8,6 +9,7 @@ const ctfConfig = getConfigForKeys([
   'CTF_CDA_ACCESS_TOKEN'
 ])
 
+// eslint-disable-next-line nuxt/no-cjs-in-config
 const { createClient } = require('./plugins/contentful')
 const cdaClient = createClient(ctfConfig)
 
