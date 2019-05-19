@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import Card from '~/components/card.vue'
+import Card from '~/components/Card.vue'
 import { createClient } from '~/plugins/contentful.js'
 
 const client = createClient()
