@@ -3,7 +3,7 @@
     <section class="recent-posts">
       <h1 class="title">RECENT POSTS</h1>
       <div class="posts-wrap">
-        <card
+        <Card
           v-for="(post, i) in posts"
           :id="post.sys.id"
           :key="i"

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="tile is-2">
-      <card
+      <Card
         v-for="(post, i) in posts"
         :id="post.sys.id"
         :key="i"
